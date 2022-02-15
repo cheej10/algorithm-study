@@ -1,35 +1,21 @@
-function solution(s) {
-  const result = [];
+function solution(record) {
+  const answer = [];
+  const userinfo = {};
+  const userlog = { Enter: '님이 들어왔습니다.', Leave: '님이 나갔습니다.' };
 
-  for (let i = 1; i <= s.length / 2; i += 1) {
-    const str = [];
-    let myStr = '';
-    let idx = 0;
+  for (let i = 0; i < record.length; i += 1) {
+    record[i] = record[i].split(' ');
 
-    for (let j = 0; j < s.length; j += i) {
-      str.push([s.substring(j, j + i), 1]);
+    if (record[i][0] !== 'Leave') {
+      userinfo[record[i][1]] = record[i][2];
     }
-
-    for (let j = idx; j < str.length - 1; j += 1) {
-      if (str[j][0] === str[j + 1][0]) {
-        str[idx][1] += 1;
-        str[j + 1][1] = 0;
-      } else {
-        idx = j + 1;
-        continue;
-      }
-    }
-
-    for (let j = 0; j < str.length; j += 1) {
-      if (str[j][1] === 1) {
-        myStr += str[j][0];
-      }
-      if (str[j][1] > 1) {
-        myStr += str[j][1] + str[j][0];
-      }
-    }
-    result.push(myStr.length);
   }
 
-  return result.length === 0 ? s.length : Math.min(...result);
+  for (let i = 0; i < record.length; i += 1) {
+    if (record[i][0] !== 'Change') {
+      answer.push(userinfo[record[i][1]] + userlog[record[i][0]]);
+    }
+  }
+
+  return answer;
 }
