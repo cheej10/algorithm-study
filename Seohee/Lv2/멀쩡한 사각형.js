@@ -1,10 +1,6 @@
 function solution(w, h) {
     var answer = 0;
     let dots = [];
-
-    let front_y, end_y;
-
-
     function solution(w, h) {
         let answer = 0;
 
