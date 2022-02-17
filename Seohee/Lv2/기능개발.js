@@ -1,28 +1,33 @@
-function getRestDay(progress, speed) {
-    let count = 0;
-    while (progress < 100) {
-        count++;
-        progress += speed;
-    }
-    return count;
-}
 function solution(progresses, speeds) {
-    var answer = [];
-    let result = [];
+    let answer = [];
 
-    for (let i = 0; i < progresses.length; i++) {
-        result.push(getRestDay(progresses[i], speeds[i]));
-    }
-
-    let task_count = 1;
-    while (result.length != 0) {
-        let task = result.shift();
-        while (task >= result[0]) {
-            result.shift();
-            task_count++;
+    // 나머지 작업 시간 담는 배열
+    let restProgresses = progresses.map((progress, index) => {
+        let count = 0;
+        // 100전까지 날짜를 하나씩 증가
+        while (progress < 100) {
+            progress += speeds[index];
+            count++;
         }
-        answer.push(task_count);
-        task_count = 1;
+        return count;
+    })
+    // 처음 원소를 최대값으로 설정한후 반복문 수행
+    let finsh = 1;
+    let max = restProgresses[0];
+    for (let i = 1; i < restProgresses.length; i++) {
+        if (restProgresses[i] <= max)
+            finsh++;
+        else {
+            // 최대값보다 오래걸리는 일이면 
+            // 같은날에 배포가 불가능하므로
+            // 답안에 작업한 일의 수를 넣어주고
+            // 작업한 일과 최대값을 초기화 시켜준다
+            answer.push(finsh)
+            finsh = 1;
+            max = restProgresses[i]
+        }
     }
+    // 마지막 작업 결과 넣어주고 반환
+    answer.push(finsh)
     return answer;
 }
