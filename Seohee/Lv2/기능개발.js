@@ -1,8 +1,8 @@
 function solution(progresses, speeds) {
-    let answer = [];
+    const answer = [];
 
     // 나머지 작업 시간 담는 배열
-    let restProgresses = progresses.map((progress, index) => {
+    const restProgresses = progresses.map((progress, index) => {
         let count = 0;
         // 100전까지 날짜를 하나씩 증가
         while (progress < 100) {
