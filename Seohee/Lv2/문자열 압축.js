@@ -46,7 +46,3 @@ function solution(s) {
     // 결과값 반환
     return min_length;
 }
-
-console.log(solution("aabbaccc"));
-console.log(solution("ababcdcdababcdcd"));
-console.log(solution("abcabcdede"));
