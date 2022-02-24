@@ -45,7 +45,6 @@ function solution(grid) {
                 }
 
                 answer.push(count);
-
             }
         })
     })
