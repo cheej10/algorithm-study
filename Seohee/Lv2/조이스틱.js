@@ -88,9 +88,5 @@ function solution(name) {
         number[position] = 1000;
         cursor = position;
     }
-
-
-
-
     return distance;
 }
