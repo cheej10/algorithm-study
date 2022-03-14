@@ -4,7 +4,7 @@ function solution(m, n, board) {
 
     for (let i = 0; i < boards.length - 1; i += 1) {
       for (let j = 0; j < boards[i].length - 1; j += 1) {
-        let cur = boards[i][j];
+        const cur = boards[i][j];
 
         if (cur === 0) break;
         if (cur !== boards[i][j + 1]) continue;
@@ -13,9 +13,9 @@ function solution(m, n, board) {
 
         deletePlace.push(
           i + '_' + j,
-          String(i + 1) + '_' + j,
-          i + '_' + String(j + 1),
-          String(i + 1) + '_' + String(j + 1)
+          i + 1 + '_' + j,
+          i + '_' + (j + 1),
+          i + 1 + '_' + (j + 1)
         );
       }
     }
